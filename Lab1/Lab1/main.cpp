@@ -9,10 +9,10 @@ using std::cin;
 using std::endl;
 
 /**
- * \brief Распечатать матрицу matrixPtr на экран.
- * \param rows кол-во строк.
- * \param columns кол-во столбцов.
- * \param msg сообщение, которое будет печататься перед выводом матрицы.
+ * \brief Р Р°СЃРїРµС‡Р°С‚Р°С‚СЊ РјР°С‚СЂРёС†Сѓ matrixPtr РЅР° СЌРєСЂР°РЅ.
+ * \param rows РєРѕР»-РІРѕ СЃС‚СЂРѕРє.
+ * \param columns РєРѕР»-РІРѕ СЃС‚РѕР»Р±С†РѕРІ.
+ * \param msg СЃРѕРѕР±С‰РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ Р±СѓРґРµС‚ РїРµС‡Р°С‚Р°С‚СЊСЃСЏ РїРµСЂРµРґ РІС‹РІРѕРґРѕРј РјР°С‚СЂРёС†С‹.
  */
 static void printMatrix(int** matrixPtr, int rows, int columns, const char* msg);
 
@@ -20,50 +20,48 @@ int main(void) {
 	srand(time(NULL));
 	system("chcp 1251");
 
-	int firstMatrixRows, firstMatrixColumns; // кол-во строк/столбцов для первой матрицы.
-	int secondMatrixRows, secondMatrixColumns; // кол-во строк/стобцов для второй матрицы.
-	int userSelection; // способ заполнения матрицы, выбранный пользователем.
+	int firstMatrixRows, firstMatrixColumns; // РєРѕР»-РІРѕ СЃС‚СЂРѕРє/СЃС‚РѕР»Р±С†РѕРІ РґР»СЏ РїРµСЂРІРѕР№ РјР°С‚СЂРёС†С‹.
+	int secondMatrixRows, secondMatrixColumns; // РєРѕР»-РІРѕ СЃС‚СЂРѕРє/СЃС‚РѕР±С†РѕРІ РґР»СЏ РІС‚РѕСЂРѕР№ РјР°С‚СЂРёС†С‹.
+	int userSelection; // СЃРїРѕСЃРѕР± Р·Р°РїРѕР»РЅРµРЅРёСЏ РјР°С‚СЂРёС†С‹, РІС‹Р±СЂР°РЅРЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј.
 
-	int matrixMinSize = 2; // множитель для минимального размера матрицы.
+	int matrixMinSize = 2; // РјРЅРѕР¶РёС‚РµР»СЊ РґР»СЏ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ СЂР°Р·РјРµСЂР° РјР°С‚СЂРёС†С‹.
 
-	cout << "Вас приветствует программа быстрого перемножения матриц методом Штрассена." << endl << endl;
+	cout << "Р’Р°СЃ РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ РїСЂРѕРіСЂР°РјРјР° Р±С‹СЃС‚СЂРѕРіРѕ РїРµСЂРµРјРЅРѕР¶РµРЅРёСЏ РјР°С‚СЂРёС† РјРµС‚РѕРґРѕРј РЁС‚СЂР°СЃСЃРµРЅР°." << endl << endl;
 
 	///////////////////////////////////////////////////////////////////////////////
-	////////////////////Ввод размеров матрицы пользователем////////////////////////
+	////////////////////Р’РІРѕРґ СЂР°Р·РјРµСЂРѕРІ РјР°С‚СЂРёС†С‹ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
-	cout << "Введите размеры первой матрицы: ";
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂС‹ РїРµСЂРІРѕР№ РјР°С‚СЂРёС†С‹: ";
 	cin >> firstMatrixRows >> firstMatrixColumns;
 	if (cin.fail() || firstMatrixRows <= 0 || firstMatrixColumns <= 0) {
 		cin.ignore();
 		cin.clear();
-		cout << "Введите размеры первой матрицы: ";
+		cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂС‹ РїРµСЂРІРѕР№ РјР°С‚СЂРёС†С‹: ";
 		cin >> firstMatrixRows >> firstMatrixColumns;
 	}
 
-	cout << "Введите размеры второй матрицы: ";
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂС‹ РІС‚РѕСЂРѕР№ РјР°С‚СЂРёС†С‹: ";
 	cin >> secondMatrixRows >> secondMatrixColumns;
 	if (cin.fail() || secondMatrixRows <= 0 || secondMatrixColumns <= 0) {
 		cin.ignore();
 		cin.clear();
-		cout << "Введите размеры второй матрицы: ";
+		cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂС‹ РІС‚РѕСЂРѕР№ РјР°С‚СЂРёС†С‹: ";
 		cin >> secondMatrixRows >> secondMatrixColumns;
 	}
 
-	int** firstMatrix = ArrayHandler_allocateMemory(firstMatrixRows,
-													firstMatrixColumns);
-	int** secondMatrix = ArrayHandler_allocateMemory(secondMatrixRows,
-													 secondMatrixColumns);
+	int** firstMatrix = ArrayHandler_allocateMemory(firstMatrixRows, firstMatrixColumns);
+	int** secondMatrix = ArrayHandler_allocateMemory(secondMatrixRows, secondMatrixColumns);
 
 	if (!firstMatrix || !secondMatrix)
 		return 0;
 
 	///////////////////////////////////////////////////////////////////////////////
-	////////////////Выбор способа заполнения и заполнение матриц///////////////////
+	////////////////Р’С‹Р±РѕСЂ СЃРїРѕСЃРѕР±Р° Р·Р°РїРѕР»РЅРµРЅРёСЏ Рё Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†///////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	do {
-		cout << "Выберите способ заполнения матриц (1 - Вручную, 2 - Случайным образом): ";
+		cout << "Р’С‹Р±РµСЂРёС‚Рµ СЃРїРѕСЃРѕР± Р·Р°РїРѕР»РЅРµРЅРёСЏ РјР°С‚СЂРёС† (1 - Р’СЂСѓС‡РЅСѓСЋ, 2 - РЎР»СѓС‡Р°Р№РЅС‹Рј РѕР±СЂР°Р·РѕРј): ";
 		cin >> userSelection;
 	} while (userSelection < 1 || userSelection > 2);
 
@@ -72,20 +70,20 @@ int main(void) {
 			MatrixHandler_fillMatrixManually(firstMatrix, firstMatrixRows, firstMatrixColumns);
 			MatrixHandler_fillMatrixManually(secondMatrix, secondMatrixRows, secondMatrixColumns);
 
-			printMatrix(firstMatrix, firstMatrixRows, firstMatrixColumns, "\nМатрица 1\n\n");
-			printMatrix(secondMatrix, secondMatrixRows, secondMatrixColumns, "\nМатрица 2\n\n");
+			printMatrix(firstMatrix, firstMatrixRows, firstMatrixColumns, "\nРњР°С‚СЂРёС†Р° 1\n\n");
+			printMatrix(secondMatrix, secondMatrixRows, secondMatrixColumns, "\nРњР°С‚СЂРёС†Р° 2\n\n");
 			break;
 		case 2:
 			MatrixHandler_fillMatrixWithRandom(firstMatrix, firstMatrixRows, firstMatrixColumns);
 			MatrixHandler_fillMatrixWithRandom(secondMatrix, secondMatrixRows, secondMatrixColumns);
 
-			printMatrix(firstMatrix, firstMatrixRows, firstMatrixColumns, "\nМатрица 1\n\n");
-			printMatrix(secondMatrix, secondMatrixRows, secondMatrixColumns, "\nМатрица 2\n\n");
+			printMatrix(firstMatrix, firstMatrixRows, firstMatrixColumns, "\nРњР°С‚СЂРёС†Р° 1\n\n");
+			printMatrix(secondMatrix, secondMatrixRows, secondMatrixColumns, "\nРњР°С‚СЂРёС†Р° 2\n\n");
 			break;
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	/////////////////Приведение матриц к требуемому размеру////////////////////////
+	/////////////////РџСЂРёРІРµРґРµРЅРёРµ РјР°С‚СЂРёС† Рє С‚СЂРµР±СѓРµРјРѕРјСѓ СЂР°Р·РјРµСЂСѓ////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	while (matrixMinSize < firstMatrixRows || matrixMinSize < secondMatrixRows
@@ -103,12 +101,12 @@ int main(void) {
 	MatrixHandler_copyMatrix(firstMatrix, M3, firstMatrixRows, firstMatrixColumns, 0, 0);
 	MatrixHandler_copyMatrix(secondMatrix, M4, secondMatrixRows, secondMatrixColumns, 0, 0);
 
-	cout << endl << "Приведенные матрицы\n";
-	printMatrix(M3, matrixMinSize, matrixMinSize, "\nМатрица 1\n\n");
-	printMatrix(M4, matrixMinSize, matrixMinSize, "\nМатрица 2\n\n");
+	cout << endl << "РџСЂРёРІРµРґРµРЅРЅС‹Рµ РјР°С‚СЂРёС†С‹\n";
+	printMatrix(M3, matrixMinSize, matrixMinSize, "\nРњР°С‚СЂРёС†Р° 1\n\n");
+	printMatrix(M4, matrixMinSize, matrixMinSize, "\nРњР°С‚СЂРёС†Р° 2\n\n");
 
 	///////////////////////////////////////////////////////////////////////////////
-	///////////////Разбиение матриц на подматрицы и их заполнение//////////////////
+	///////////////Р Р°Р·Р±РёРµРЅРёРµ РјР°С‚СЂРёС† РЅР° РїРѕРґРјР°С‚СЂРёС†С‹ Рё РёС… Р·Р°РїРѕР»РЅРµРЅРёРµ//////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	int** submatrix1 = ArrayHandler_allocateMemory(halfMatrixMinSize, halfMatrixMinSize);
@@ -136,7 +134,7 @@ int main(void) {
 	MatrixHandler_copyMatrix(M4, submatrix8, halfMatrixMinSize, halfMatrixMinSize, halfMatrixMinSize, halfMatrixMinSize);
 
 	///////////////////////////////////////////////////////////////////////////////
-	////////////////////////Создание промежуточных матриц//////////////////////////
+	////////////////////////РЎРѕР·РґР°РЅРёРµ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹С… РјР°С‚СЂРёС†//////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	int** intermediate1 = ArrayHandler_allocateMemory(halfMatrixMinSize, halfMatrixMinSize);
@@ -148,7 +146,7 @@ int main(void) {
 	int** intermediate7 = ArrayHandler_allocateMemory(halfMatrixMinSize, halfMatrixMinSize);
 
 	///////////////////////////////////////////////////////////////////////////////
-	////////////////////Вычисление значений промежуточных матриц///////////////////
+	////////////////////Р’С‹С‡РёСЃР»РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹С… РјР°С‚СЂРёС†///////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	for (int i = 0; i < halfMatrixMinSize; i++) {
@@ -184,7 +182,7 @@ int main(void) {
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////Создание вспомогательных матриц/////////////////////////
+	///////////////////////РЎРѕР·РґР°РЅРёРµ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… РјР°С‚СЂРёС†/////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	int** mat9 = ArrayHandler_allocateMemory(halfMatrixMinSize, halfMatrixMinSize);
@@ -193,7 +191,7 @@ int main(void) {
 	int** mat12 = ArrayHandler_allocateMemory(halfMatrixMinSize, halfMatrixMinSize);
 
 	///////////////////////////////////////////////////////////////////////////////
-	////////////Подсчет значений вспомогательных матриц из промежуточных///////////
+	////////////РџРѕРґСЃС‡РµС‚ Р·РЅР°С‡РµРЅРёР№ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… РјР°С‚СЂРёС† РёР· РїСЂРѕРјРµР¶СѓС‚РѕС‡РЅС‹С…///////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	for (int i = 0; i < halfMatrixMinSize; i++) {
@@ -206,13 +204,13 @@ int main(void) {
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	///////////////////Создание результирующей матрицы/////////////////////////////
+	///////////////////РЎРѕР·РґР°РЅРёРµ СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµР№ РјР°С‚СЂРёС†С‹/////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	int** M5 = ArrayHandler_allocateMemory(matrixMinSize, matrixMinSize);
 
 	///////////////////////////////////////////////////////////////////////////////
-	///////Занесение информации из вспомогательных матриц в результирующую/////////
+	///////Р—Р°РЅРµСЃРµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё РёР· РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹С… РјР°С‚СЂРёС† РІ СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰СѓСЋ/////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	for (int i = 0; i < halfMatrixMinSize; i++) {
@@ -225,7 +223,7 @@ int main(void) {
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
-	////////////////Выравнивание границ результирующей матрицы/////////////////////
+	////////////////Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РіСЂР°РЅРёС† СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµР№ РјР°С‚СЂРёС†С‹/////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	int x = 0, f = 100, s = 100;
@@ -256,14 +254,14 @@ int main(void) {
 	MatrixHandler_copyMatrix(M5, resultMatrix, f, s, 0, 0);
 
 	///////////////////////////////////////////////////////////////////////////////
-	///////////////////Вывод результирующей матрицы////////////////////////////////
+	///////////////////Р’С‹РІРѕРґ СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµР№ РјР°С‚СЂРёС†С‹////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
-	printMatrix(resultMatrix, f, s, "\nРезультирующая матрица\n\n");
+	printMatrix(resultMatrix, f, s, "\nР РµР·СѓР»СЊС‚РёСЂСѓСЋС‰Р°СЏ РјР°С‚СЂРёС†Р°\n\n");
 	system("pause");
 
 	///////////////////////////////////////////////////////////////////////////////
-	/////////////////////Очистка динамической памяти///////////////////////////////
+	/////////////////////РћС‡РёСЃС‚РєР° РґРёРЅР°РјРёС‡РµСЃРєРѕР№ РїР°РјСЏС‚Рё///////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
 	ArrayHandler_deleteMatrix(firstMatrix, firstMatrixRows);
