@@ -349,7 +349,7 @@ Track Order::best(std::string startP, std::string finishP, Type deliv, int volum
 {
 	int start = decr(startP);
 	int finish = decr(finishP);
-	int** mat = new int*[SIZE];
+	int** mat = new int* [SIZE];
 	for (int i = 0; i < SIZE; i++)
 		mat[i] = new int[SIZE];
 	mat = matrixUpd(deliv);
@@ -562,7 +562,7 @@ Track Order::best(std::string startP, std::string finishP, Type deliv, int volum
 
 int** Order::matrixUpd(Type type)
 {
-	int** matrix = new int*[SIZE];
+	int** matrix = new int* [SIZE];
 	for (int i = 0; i < SIZE; i++)
 	{
 		matrix[i] = new int[SIZE];
