@@ -76,7 +76,7 @@ void CarBuilder::BuildDistance(int distance) { car_->SetDistance(distance); }
 void TrainBuilder::Reset() {
 	train_ = std::unique_ptr<Vehicle>(new Train());
 }
-Vehicle* TrainBuilder::GetCar() {
+Vehicle* TrainBuilder::GetTrain() {
 	return train_.get();
 }
 
@@ -88,9 +88,9 @@ void TrainBuilder::BuildDistance(int distance) { train_->SetDistance(distance); 
 /* ---------------------------------- */
 
 void PlaneBuilder::Reset() {
-	plane_ = std::unique_ptr<Vehicle>(new Train());
+	plane_ = std::unique_ptr<Vehicle>(new Plane());
 }
-Vehicle* PlaneBuilder::GetCar() {
+Vehicle* PlaneBuilder::GetPlane() {
 	return plane_.get();
 }
 

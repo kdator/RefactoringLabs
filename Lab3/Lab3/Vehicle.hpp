@@ -50,7 +50,8 @@ public:
 /** ------------ BUILDERS ------------ */
 
 /**
- * @brief Here we use pattern name as Builder.
+ * @brief Here we use Builder pattern.
+ *			  It is an interface for builders.
  */
 class VehicleBuilder {
 public:
@@ -84,7 +85,7 @@ public:
 	void BuildPrice(double price) override;
 	void BuildDistance(int distance) override;
 	void Reset();
-	Vehicle* GetCar();
+	Vehicle* GetTrain();
 };
 
 class PlaneBuilder : public VehicleBuilder {
@@ -97,5 +98,5 @@ public:
 	void BuildPrice(double price) override;
 	void BuildDistance(int distance) override;
 	void Reset();
-	Vehicle* GetCar();
+	Vehicle* GetPlane();
 };
